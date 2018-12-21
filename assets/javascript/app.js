@@ -16,7 +16,7 @@ window.onload = function() {
 
 // variables
 var intervalId;
-var time = 10;
+var time = 30;
 var clockRunning = false;
 var correctAnswers = 0;
 var wrongAnswers = 0;
