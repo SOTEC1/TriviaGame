@@ -1,5 +1,8 @@
 // on window load 
 window.onload = function() {
+  $(".first").show()
+  $(".game").hide()
+  $(".end").hide()
   $(".start").on("click", start);
   $("#timer").text("Time left: " + time);
   $(".submit").on("click", endGame);
@@ -17,6 +20,8 @@ var time = 10;
 var clockRunning = false;
 var correctAnswers = 0;
 var wrongAnswers = 0;
+var gameActive = false;
+
 
 // start button function
 function start() {
@@ -24,6 +29,9 @@ function start() {
   clockRunning = true;
   intervalId = setInterval(decrement, 1000);
   $("#timer").text("Time left: " + time);
+  $(".start").hide()
+  $(".game").show()
+  $(".end").hide()
 }
 
 // timer function
@@ -41,13 +49,18 @@ function start() {
 
    for (let i = 0; i < answers.length; i++) {
      
-     if ($(`input[name="Q${i+1}"]:checked`).val() === answer[i].correctAnswers) {
+     if ($(`input[name="Q${i+1}"]:checked`).val() === answers[i].correctAnswers) {
        correctAnswers++;
        }
        else {
          wrongAnswers++;
        }
    }
+   $(".start").hide()
+   $(".game").hide()
+   $(".end").show()
+   $(".correct").text("Correct Answers: " + correctAnswers);
+   $(".wrong").text("Wrong Answers: " + wrongAnswers)
  }
 
 var answers = [{
