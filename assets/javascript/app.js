@@ -3,7 +3,7 @@ window.onload = function begin() {
   $(".first").show()
   $(".game").hide()
   $(".end").hide()
-  $(".start").on("click", start);
+  $(".go").on("click", start);
   $("#timer").text("Time left: " + time);
   $(".submit").on("click", endGame);
   $(".reset").on("click", reset);
@@ -42,7 +42,8 @@ function decrement() {
 // end game function stops timer, runs players choices against correct answers, prints correct and wrong answers to final screen
 function endGame() {
   clearInterval(intervalId);
-// loop goes through players answers
+
+  // loop goes through players answers
   for (let i = 0; i < answers.length; i++) {
     if ($(`input[name="Q${i}"]:checked`).val() === answers[i].correctAnswers) {
       correctAnswers++;
@@ -86,10 +87,9 @@ var answers = [{
 function reset() {
   clearInterval(intervalId);
   intervalId = setInterval(decrement, 1000);
-  $(".first").hide()
+  $(".start").hide()
   $(".game").show()
   $(".end").hide()
-  $(".start").on("click", start);
   $("#timer").text("Time left: " + time);
   $(".submit").on("click", endGame);
   clockRunning = true;
